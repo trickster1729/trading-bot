@@ -1,6 +1,6 @@
 # Trading Bot — Progress Tracker
 
-Last updated: 2026-03-25 (session 3 — docs sprint)
+Last updated: 2026-03-25 (session 4 — health + alerts, git init, CLAUDE.md)
 
 ---
 
@@ -18,8 +18,8 @@ Last updated: 2026-03-25 (session 3 — docs sprint)
 ### Monitoring
 - [x] `bot/monitoring/logger.py` — structlog setup, JSON file + Rich console output
 - [x] `bot/monitoring/metrics.py` — in-memory PerformanceTracker (PnL, Sharpe, win rate, drawdown)
-- [ ] `bot/monitoring/health.py` — heartbeat loop (data feed + broker + strategy checks)
-- [ ] `bot/monitoring/alerts.py` — alert dispatcher (console for now)
+- [x] `bot/monitoring/health.py` — heartbeat loop (data feed + broker + strategy checks)
+- [x] `bot/monitoring/alerts.py` — alert dispatcher (ConsoleChannel + LogChannel, Phase 1)
 
 ### Data Layer
 - [x] `bot/data/base.py` — DataLoader ABC + Bar dataclass
@@ -60,6 +60,7 @@ Last updated: 2026-03-25 (session 3 — docs sprint)
 - [x] `tests/test_risk.py` — all RiskManager gates, kill switch, position sizing, per-asset limits (25+ cases)
 - [x] `tests/test_execution.py` — PaperBroker fills, slippage, commissions, cancellations (25+ cases)
 - [x] `tests/test_backtest.py` — BacktestEngine flow, PerformanceTracker math (25+ cases)
+- [x] `tests/test_monitoring.py` — health checkers, monitor loop, alert dispatcher, channels (37 cases)
 
 ### Build & Execution
 - [x] `Makefile` — `make install/test/backtest/lint/clean` + db query shortcuts
@@ -79,6 +80,8 @@ Last updated: 2026-03-25 (session 3 — docs sprint)
 - [x] `docs/adr/ADR-006` — SQLAlchemy + SQLite → PostgreSQL migration path
 - [x] `docs/adr/ADR-007` — Alpaca + Binance as primary brokers
 - [x] `docs/adr/ADR-008` — RSI + SMA momentum as Phase 1 baseline strategy
+- [x] `CLAUDE.md` — project rules, architecture constraints, testing standards, context management
+- [x] `git` — repository initialized, commits in progress
 
 ### Scripts
 - [ ] `scripts/seed_historical.py` — download and cache historical data
