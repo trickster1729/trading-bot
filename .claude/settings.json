@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pytest --cov=bot --cov-report=term-missing -q)",
+      "Bash(ls /Users/akku/trading-bot/.claude*)"
+    ]
+  }
+}

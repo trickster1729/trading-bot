@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install:*)",
+      "Bash(pytest --tb=short)",
+      "Bash(pytest --tb=short --cov=bot --cov-report=term-missing)"
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "trading-bot"
+version = "0.1.0"
+description = "Algorithmic trading bot — Phase 1: CLI + shadow trading"
+requires-python = ">=3.11,<3.14"
+
+dependencies = [
+    # CLI
+    "typer>=0.12",
+    # Data
+    "yfinance>=0.2",
+    "ccxt>=4.0",
+    "pandas>=2.0",
+    "numpy>=1.26",
+    # Logging & display
+    "structlog>=24.0",
+    "rich>=13.0",
+    # Config / env
+    "python-dotenv>=1.0",
+    # HTTP (used by ccxt, alpaca)
+    "httpx>=0.27",
+    # Database (SQLite now → PostgreSQL Phase 3+)
+    "sqlalchemy>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov",
+    "ruff",
+]
+
+[project.scripts]
+bot = "bot.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["bot"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["bot"]
+omit = [
+    "bot/cli.py",           # Typer entrypoint — integration tested manually
+    "bot/config.py",        # Env-var loading — tested via .env.example
+    "bot/data/yahoo.py",    # Network I/O — integration test only
+    "bot/data/alpaca.py",   # Network I/O — integration test only
+    "bot/data/ccxt_loader.py",
+    "bot/monitoring/logger.py",   # Logging setup, not business logic
+    "bot/backtest/report.py",     # Rich terminal rendering, no assertable logic
+    "bot/execution/alpaca.py",    # Live broker — integration test only
+    "bot/execution/binance.py",   # Live broker — integration test only
+    "bot/monitoring/alerts.py",   # Alert dispatcher — integration tested
+    "bot/monitoring/health.py",   # Heartbeat loop — integration tested
+]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "def __repr__",
+    "@abstractmethod",
+    "raise NotImplementedError",
+]
+
+[tool.ruff]
+line-length = 100
