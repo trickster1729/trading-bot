@@ -24,7 +24,7 @@ Last updated: 2026-03-25 (session 4 — health + alerts, git init, CLAUDE.md)
 ### Data Layer
 - [x] `bot/data/base.py` — DataLoader ABC + Bar dataclass
 - [x] `bot/data/yahoo.py` — YahooLoader (yfinance, free historical)
-- [ ] `bot/data/ccxt_loader.py` — crypto via CCXT
+- [x] `bot/data/ccxt_loader.py` — crypto via CCXT (Binance default, pagination, interval mapping)
 - [ ] `bot/data/alpaca.py` — Alpaca live data (Phase 2)
 
 ### Signal / Strategy Layer
